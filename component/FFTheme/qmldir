@@ -1,0 +1,6 @@
+module FFTheme
+singleton FFColor 1.0 FFColor.qml
+singleton FFFont 1.0 FFFont.qml
+singleton FFMetrics 1.0 FFMetrics.qml
+singleton FFDisplaySize 1.0 FFDisplaySize.qml
+singleton FFIcon 1.0 FFIcon.qml

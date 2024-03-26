@@ -1,0 +1,9 @@
+[Icon Theme]
+Name=theme
+Comment=Film flow theme icons
+
+Directories=24x24
+
+[24x24]
+Size=24
+Type=Fixed

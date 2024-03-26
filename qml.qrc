@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>component/FFTheme/FFColor.qml</file>
+        <file>component/FFTheme/qmldir</file>
+        <file>component/Loading/Loading.qml</file>
+        <file>component/Loading/LoadingForm.ui.qml</file>
+        <file>component/FFTheme/FFFont.qml</file>
+        <file>component/FFTextField/FFTextField.qml</file>
+        <file>component/FFTextField/FFTextFieldForm.ui.qml</file>
+        <file>component/FFTheme/FFMetrics.qml</file>
+        <file>component/FFTheme/FFDisplaySize.qml</file>
+        <file>icons/theme/24x24/search.png</file>
+        <file>icons/theme/index.theme</file>
+        <file>component/FFTheme/FFIcon.qml</file>
+        <file>component/SearchTextField/SearchTextField.qml</file>
+        <file>component/SearchTextField/SearchTextFieldForm.ui.qml</file>
+        <file>component/ProgramList/ProgramList.qml</file>
+        <file>component/ProgramList/ProgramListForm.ui.qml</file>
+        <file>component/ProgramDetail/ProgramDetail.qml</file>
+        <file>component/ProgramDetail/ProgramDetailForm.ui.qml</file>
+        <file>icons/theme/24x24/star.png</file>
+        <file>component/ProgramData/ProgramData.qml</file>
+        <file>component/ProgramData/ProgramDataForm.ui.qml</file>
+        <file>component/FFCustom/button/FFButon.qml</file>
+        <file>component/FFCustom/button/FFButonForm.ui.qml</file>
+        <file>icons/theme/24x24/seta-esquerda.png</file>
+        <file>component/Badge/Badge.qml</file>
+        <file>component/Badge/BadgeForm.ui.qml</file>
+        <file>component/MessageError/MessageError.qml</file>
+        <file>icons/theme/96x96/nao-encontrado.png</file>
+        <file>component/FFCustom/StackView/FFStackView.qml</file>
+        <file>component/GenresList/GenresList.qml</file>
+        <file>component/Average/Average.qml</file>
+        <file>images/sem-foto.jpg</file>
+    </qresource>
+</RCC>
