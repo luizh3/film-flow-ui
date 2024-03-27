@@ -3,10 +3,15 @@
 
 #include <QObject>
 
+#include <dto/programdto.h>
+
 #include <film-flow-core/controller/programscontroller.h>
 
-class ProgramsControl : public QObject{
+class ProgramsControl : public QObject {
     Q_OBJECT
+public:
+     ProgramsControl();
+    ~ProgramsControl();
 public slots:
     void doStart();
     void onSearch( const QString& dsQuery );
@@ -16,6 +21,7 @@ signals:
     void messageError( const QString& title, const QString& description );
 private:
     ProgramsController _programsController;
+    QList<ProgramDto*> _programsDto;
 };
 
 #endif // PROGRAMSCONTROL_H

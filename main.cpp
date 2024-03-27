@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
     app.setOrganizationName("Film Flow");
     app.setOrganizationDomain("film.flow.br");
-    QCoreApplication::setApplicationName("Film Flow");
+    app.setApplicationName("Film Flow");
 
     Register::type();
 

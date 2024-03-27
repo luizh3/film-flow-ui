@@ -11,15 +11,17 @@ import "../Average"
 Rectangle {
     id: root
     color: FFColor.strongGray
+    radius: FFMetrics.radius.small
 
     property var model: null
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 15
+        anchors.margins: FFMetrics.margin.large
         spacing: FFMetrics.spacings.medium
 
         Image {
+            id: mainImage
             source: model
                     && model.dsImageUrl !== "" ? model.dsImageUrl : "/images/sem-foto.jpg"
             Layout.fillWidth: true

@@ -10,6 +10,13 @@ constexpr const char* DS_TITLE_ON_THE_RISE = "Em Alta";
 constexpr const char* DS_TITLE_SEARCH = "Resultados";
 }
 
+ProgramsControl::ProgramsControl() :
+    _programsDto( {} ) {}
+
+ProgramsControl::~ProgramsControl() {
+    qDeleteAll( _programsDto );
+}
+
 void ProgramsControl::doStart() {
 
     QList<ProgramModel*> programsModel = {};
@@ -20,7 +27,9 @@ void ProgramsControl::doStart() {
         programsModel = _programsController.findOnTheRise();
     });
 
-    QList<QObject*> programsDto = ListConverter<ProgramDto,QObject>::toList( ProgramDtoConverter::toDtos( programsModel ) );
+    _programsDto = ProgramDtoConverter::toDtos( programsModel );
+
+    QList<QObject*> programsDto = ListConverter<ProgramDto,QObject>::toList( _programsDto );
 
     qDeleteAll( programsModel );
 
@@ -38,7 +47,11 @@ void ProgramsControl::onSearch( const QString& dsQuery ) {
         programsModel = _programsController.findByName( dsQuery );
     });
 
-    QList<QObject*> programsDto = ListConverter<ProgramDto,QObject>::toList( ProgramDtoConverter::toDtos( programsModel ) );
+    qDeleteAll( _programsDto );
+
+    _programsDto = ProgramDtoConverter::toDtos( programsModel );
+
+    QList<QObject*> programsDto = ListConverter<ProgramDto,QObject>::toList( _programsDto );
 
     qDeleteAll( programsModel );
 

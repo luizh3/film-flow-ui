@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.15
 
 import FFTheme 1.0
 
@@ -19,7 +19,7 @@ Window {
     visible: true
     width: FFDisplaySize.screen.width.min
     height: FFDisplaySize.screen.height.max
-    title: qsTr("Hello World")
+    title: qsTr("Film Flow")
     color: "#333"
 
     minimumWidth: FFDisplaySize.screen.width.min
