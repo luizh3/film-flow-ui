@@ -1,16 +1,17 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.0
 
 import FFTheme 1.0
 
 import "../FFTextField"
 
 Rectangle {
-    border.color: FFColor.orange
     border.width: 1
+    border.color: isEnabled ? FFColor.orange : FFColor.secundary
     radius: FFMetrics.radius.small
+
+    readonly property bool isEnabled: ffTextField.textField.enabled
 
     property alias ffTextField: ffTextField
     property alias button: button
@@ -31,7 +32,7 @@ Rectangle {
         icon.color: FFColor.white
 
         background: Rectangle {
-            color: FFColor.orange
+            color: isEnabled ? FFColor.orange : FFColor.secundary
             radius: FFMetrics.radius.small
         }
     }

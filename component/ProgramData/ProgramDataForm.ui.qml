@@ -1,6 +1,5 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.0
-import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.15
 
 import FFTheme 1.0
@@ -12,15 +11,17 @@ import "../Average"
 Rectangle {
     id: root
     color: FFColor.strongGray
+    radius: FFMetrics.radius.small
 
     property var model: null
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 15
+        anchors.margins: FFMetrics.margin.large
         spacing: FFMetrics.spacings.medium
 
         Image {
+            id: mainImage
             source: model
                     && model.dsImageUrl !== "" ? model.dsImageUrl : "/images/sem-foto.jpg"
             Layout.fillWidth: true

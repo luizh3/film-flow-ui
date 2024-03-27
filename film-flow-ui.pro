@@ -7,7 +7,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         control/programscontrol.cpp \
         dto/converter/programdtoconverter.cpp \
-        dto/programdto.cpp \
         main.cpp \
         register.cpp
 

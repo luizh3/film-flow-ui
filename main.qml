@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.15
 
 import FFTheme 1.0
 
@@ -19,7 +19,7 @@ Window {
     visible: true
     width: FFDisplaySize.screen.width.min
     height: FFDisplaySize.screen.height.max
-    title: qsTr("Hello World")
+    title: qsTr("Film Flow")
     color: "#333"
 
     minimumWidth: FFDisplaySize.screen.width.min
@@ -49,6 +49,25 @@ Window {
     FFStackView {
         id: stack
         initialItem: mainComponent
+        anchors.bottomMargin: FFMetrics.margin.large * 2
+    }
+
+    Label {
+        id: labelFont
+        anchors.top: stack.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Programs By TVMaze"
+        font.bold: true
+        onLinkActivated: Qt.openUrlExternally("https://www.tvmaze.com/api")
+        color: FFColor.white
+        anchors.topMargin: FFMetrics.margin.large / 2
+
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            acceptedButtons: Qt.NoButton
+            cursorShape: Qt.PointingHandCursor
+        }
     }
 
     Component {
@@ -61,6 +80,8 @@ Window {
 
             SearchTextField {
                 Layout.fillWidth: true
+                ffTextField.textField.placeholderText: "Pesquisar..."
+                ffTextField.textField.enabled: !(pageLoader.item instanceof Loading)
                 onSearch: function (dsQuery) {
                     control.onSearch(dsQuery)
                 }
