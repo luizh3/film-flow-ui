@@ -13,10 +13,10 @@ Control {
 
     contentItem: TextField {
         id: textField
+        selectByMouse: true
         font.pixelSize: FFFont.size.medium
-        placeholderText: qsTr("Enter description")
         background: Rectangle {
-            border.color: "transparent"
+            border.color: FFColor.transparent
         }
     }
 }

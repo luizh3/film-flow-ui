@@ -61,6 +61,8 @@ Window {
 
             SearchTextField {
                 Layout.fillWidth: true
+                ffTextField.textField.placeholderText: "Pesquisar..."
+                ffTextField.textField.enabled: !(pageLoader.item instanceof Loading)
                 onSearch: function (dsQuery) {
                     control.onSearch(dsQuery)
                 }
