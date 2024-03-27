@@ -49,6 +49,25 @@ Window {
     FFStackView {
         id: stack
         initialItem: mainComponent
+        anchors.bottomMargin: FFMetrics.margin.large * 2
+    }
+
+    Label {
+        id: labelFont
+        anchors.top: stack.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Programs By TVMaze"
+        font.bold: true
+        onLinkActivated: Qt.openUrlExternally("https://www.tvmaze.com/api")
+        color: FFColor.white
+        anchors.topMargin: FFMetrics.margin.large / 2
+
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            acceptedButtons: Qt.NoButton
+            cursorShape: Qt.PointingHandCursor
+        }
     }
 
     Component {
