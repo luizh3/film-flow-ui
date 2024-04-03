@@ -1,6 +1,8 @@
 #ifndef PROGRAMSCONTROL_H
 #define PROGRAMSCONTROL_H
 
+#include <functional>
+
 #include <QObject>
 
 #include <dto/programdto.h>
@@ -14,12 +16,18 @@ public:
     ~ProgramsControl();
 public slots:
     void doStart();
-    void onSearch( const QString& dsQuery );
+    void onSearchByName( const QString& dsQuery );
 signals:
     void programsChanged( QList<QObject*> programs, const QString& dsTitleCategory );
     void showLoading();
     void messageError( const QString& title, const QString& description );
 private:
+    void onSearchOnTheRise();
+
+    bool isProgramsValid( const QList<ProgramModel*>& programs );
+
+    void onSearch( std::function<QList<ProgramModel*>()> findCallback, const QString& title );
+
     ProgramsController _programsController;
     QList<ProgramDto*> _programsDto;
 };
