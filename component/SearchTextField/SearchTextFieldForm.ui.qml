@@ -7,11 +7,10 @@ import FFTheme 1.0
 import "../FFTextField"
 
 Rectangle {
+    id: root
     border.width: 1
-    border.color: isEnabled ? FFColor.orange : FFColor.secundary
+    border.color: root.enabled ? FFColor.orange : FFColor.secundary
     radius: FFMetrics.radius.small
-
-    readonly property bool isEnabled: ffTextField.textField.enabled
 
     property alias ffTextField: ffTextField
     property alias button: button
@@ -19,6 +18,7 @@ Rectangle {
     FFTextField {
         id: ffTextField
         width: parent.width - button.width
+        enabled: root.enabled
     }
 
     Button {
@@ -27,12 +27,13 @@ Rectangle {
         anchors.left: ffTextField.right
         anchors.verticalCenter: parent.verticalCenter
         height: parent.height
+        enabled: root.enabled
 
         icon.name: FFIcon.name.search
         icon.color: FFColor.white
 
         background: Rectangle {
-            color: isEnabled ? FFColor.orange : FFColor.secundary
+            color: root.enabled ? FFColor.orange : FFColor.secundary
             radius: FFMetrics.radius.small
         }
     }

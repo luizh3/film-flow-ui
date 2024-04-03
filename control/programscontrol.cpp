@@ -1,5 +1,7 @@
 #include "programscontrol.h"
 
+#include <QDebug>
+
 #include <dto/converter/programdtoconverter.h>
 
 #include <film-flow-core/utils/listconverter.h>
@@ -19,47 +21,77 @@ ProgramsControl::~ProgramsControl() {
 
 void ProgramsControl::doStart() {
 
-    QList<ProgramModel*> programsModel = {};
+    qInfo() << "ProgramsControl::doStart";
 
-    emit showLoading();
+    onSearchOnTheRise();
 
-    SyncTask::runSync( [&]() {
-        programsModel = _programsController.findOnTheRise();
-    });
+    qInfo() << "ProgramsControl::doStart";
+}
 
-    _programsDto = ProgramDtoConverter::toDtos( programsModel );
+void ProgramsControl::onSearchByName( const QString& dsQuery ) {
 
-    QList<QObject*> programsDto = ListConverter<ProgramDto,QObject>::toList( _programsDto );
+    qInfo() << "ProgramsControl::onSearchByName [DS_QUERY]" << dsQuery;
 
-    qDeleteAll( programsModel );
+    onSearch([&](){
+        return _programsController.findByName( dsQuery );
+    }, DS_TITLE_SEARCH );
 
-    emit programsChanged( programsDto, DS_TITLE_ON_THE_RISE );
+    qInfo() << "ProgramsControl::onSearchByName";
 
 }
 
-void ProgramsControl::onSearch( const QString& dsQuery ) {
+void ProgramsControl::onSearchOnTheRise() {
+
+    qInfo() << "ProgramsControl::onSearchOnTheRise";
+
+    onSearch([&](){
+        return _programsController.findOnTheRise();
+    }, DS_TITLE_ON_THE_RISE );
+
+    qInfo() << "ProgramsControl::onSearchOnTheRise";
+
+}
+
+bool ProgramsControl::isProgramsValid( const QList<ProgramModel*>& programs ) {
+
+    qInfo() << "ProgramsControl::isProgramsValid [PROGRAMS_COUNT]" << programs.count();
+
+    if( programs.isEmpty() ) {
+        emit messageError("Nenhum filme encontrado!","Não encontramos nenhum filme que corresponda à sua pesquisa. Por favor, tente novamente com termos diferentes.");
+        return false;
+    }
+
+    qInfo() << "ProgramsControl::isProgramsValid [RETURN] true";
+
+    return true;
+}
+
+void ProgramsControl::onSearch( std::function<QList<ProgramModel*>()> findCallback, const QString& title ) {
+
+    qInfo() << "ProgramsControl::onSearch";
 
     emit showLoading();
 
-    QList<ProgramModel*> programsModel = {};
+    QList<ProgramModel*> programs = {};
 
     SyncTask::runSync( [&]() {
-        programsModel = _programsController.findByName( dsQuery );
+        programs = findCallback();
     });
 
     qDeleteAll( _programsDto );
 
-    _programsDto = ProgramDtoConverter::toDtos( programsModel );
-
-    QList<QObject*> programsDto = ListConverter<ProgramDto,QObject>::toList( _programsDto );
-
-    qDeleteAll( programsModel );
-
-    if( programsModel.isEmpty() ) {
-        emit messageError("Nenhum filme encontrado!","Não encontramos nenhum filme que corresponda à sua pesquisa. Por favor, tente novamente com termos diferentes.");
+    if( !isProgramsValid( programs ) ){
         return;
     }
 
-    emit programsChanged( programsDto, DS_TITLE_SEARCH );
+    _programsDto = ProgramDtoConverter::toDtos( programs );
+
+    qDeleteAll( programs );
+
+    QList<QObject*> programsObject = ListConverter<ProgramDto,QObject>::toList( _programsDto );
+
+    emit programsChanged( programsObject, title );
+
+    qInfo() << "ProgramsControl::onSearch";
 
 }
