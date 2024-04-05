@@ -80,6 +80,8 @@ void ProgramsControl::onSearch( std::function<QList<ProgramModel*>()> findCallba
 
     qDeleteAll( _programsDto );
 
+    _programsDto.clear();
+
     if( !isProgramsValid( programs ) ){
         return;
     }
