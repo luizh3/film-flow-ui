@@ -33,7 +33,7 @@ void ProgramsControl::onSearchByName( const QString& dsQuery ) {
     qInfo() << "ProgramsControl::onSearchByName [DS_QUERY]" << dsQuery;
 
     onSearch([&](){
-        return _programsController.findByName( dsQuery );
+        return _programController.findByName( dsQuery );
     }, DS_TITLE_SEARCH );
 
     qInfo() << "ProgramsControl::onSearchByName";
@@ -45,7 +45,7 @@ void ProgramsControl::onSearchOnTheRise() {
     qInfo() << "ProgramsControl::onSearchOnTheRise";
 
     onSearch([&](){
-        return _programsController.findOnTheRise();
+        return _programController.findOnTheRise();
     }, DS_TITLE_ON_THE_RISE );
 
     qInfo() << "ProgramsControl::onSearchOnTheRise";

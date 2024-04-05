@@ -7,7 +7,7 @@
 
 #include <dto/programdto.h>
 
-#include <film-flow-core/controller/programscontroller.h>
+#include <film-flow-core/controller/program/programcontroller.h>
 
 class ProgramsControl : public QObject {
     Q_OBJECT
@@ -28,7 +28,7 @@ private:
 
     void onSearch( std::function<QList<ProgramModel*>()> findCallback, const QString& title );
 
-    ProgramsController _programsController;
+    ProgramController _programController;
     QList<ProgramDto*> _programsDto;
 };
 
